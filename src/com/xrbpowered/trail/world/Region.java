@@ -21,7 +21,7 @@ public class Region {
 		this.rx = rx;
 		this.ry = ry;
 		this.rz = rz;
-		this.name = String.format("%02X%02X%02X", rx+galaxySize, ry+galaxySize, rz+galaxySize);
+		this.name = String.format("%s%s%s", regChar(rx), regChar(ry), regChar(rz));
 		this.sectors = new Sector[regionSize][regionSize][regionSize];
 		numStars = 0;
 		for(int x=0; x<regionSize; x++)
@@ -59,6 +59,10 @@ public class Region {
 					}
 				}
 		return false;
+	}
+	
+	private static String regChar(int r) {
+		return Integer.toString((r + galaxySize/regionSize), 36).toUpperCase();
 	}
 
 }
